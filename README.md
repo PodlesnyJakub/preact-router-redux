@@ -1,6 +1,6 @@
 # preact-router-redux
 
-[![npm version](https://img.shields.io/npm/v/preact-router-redux.svg?style=flat-square)](https://www.npmjs.com/package/preact-router-redux) [![npm downloads](https://img.shields.io/npm/dm/preact-router-redux.svg?style=flat-square)](https://www.npmjs.com/package/preact-router-redux) [![build status](https://img.shields.io/travis/matannoam/preact-router-redux/master.svg?style=flat-square)](https://travis-ci.org/matannoam/preact-router-redux)
+[![npm version](https://img.shields.io/npm/v/preact-router-redux.svg?style=flat-square)](https://www.npmjs.com/package/preact-router-redux) [![npm downloads](https://img.shields.io/npm/dm/preact-router-redux.svg?style=flat-square)](https://www.npmjs.com/package/preact-router-redux) [![build status](https://img.shields.io/travis/pre-bp/preact-router-redux/master.svg?style=flat-square)](https://travis-ci.org/pre-bp/preact-router-redux)
 
 > **Keep your router in sync with application state** :sparkles:
 
@@ -25,7 +25,7 @@ This library allows you to use Preact Router's APIs as they are documented. And,
 
 [history](https://github.com/reactjs/history) + `store` ([redux](https://github.com/reactjs/redux)) &rarr; [**preact-router-redux**](https://github.com/matannoam/preact-router-redux) &rarr; enhanced [history](https://github.com/reactjs/history) &rarr; [preact-router](https://github.com/developit/preact-router)
 
-## Tutorial
+## Tutorial - MAY BE BROKEN - transition
 
 Let's take a look at a simple example.
 
@@ -55,10 +55,9 @@ render(
   <Provider store={store}>
     { /* Tell the Router to use our enhanced history */ }
     <Router history={history}>
-      <Route path="/" component={App}>
-        <Route path="foo" component={Foo}/>
-        <Route path="bar" component={Bar}/>
-      </Route>
+      <Route path="/" component={Main}>
+      <Route path="/foo" component={Foo}/>
+      <Route path="/bar" component={Bar}/>
     </Router>
   </Provider>,
   document.getElementById('mount')

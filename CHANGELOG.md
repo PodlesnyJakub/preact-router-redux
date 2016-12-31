@@ -1,3 +1,3 @@
-## [4.0.8](https://github.com/matannoam/preact-router-redux/compare/v4.0.7...v4.0.8)
+## [4.0.9](https://github.com/pre-bp/preact-router-redux/compare/v4.0.8...v4.0.9)
 
-- Support preact-router [#1](https://github.com/matannoam/preact-router-redux/pull/1)
+- change owner to organization

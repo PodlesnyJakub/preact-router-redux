@@ -10,11 +10,13 @@
     "lib",
     "src"
   ],
-  "repository": "matannoam/preact-router-redux",
+  "repository": "pre-bp/preact-router-redux",
   "authors": [
     "James Long",
-    "Tim Dorr"
+    "Tim Dorr",
+    "Matan Noam Shavit"
   ],
+  "author": "Matan Noam Shavit <matannoam@gmail.com>",
   "license": "MIT",
   "scripts": {
     "build": "npm run build:commonjs & npm run build:umd & npm run build:umd:min",
@@ -81,6 +83,5 @@
     "redux-devtools-dock-monitor": "^1.0.1",
     "redux-devtools-log-monitor": "^1.0.1",
     "webpack": "^1.12.9"
-  },
-  "author": "Matan Noam Shavit <matannoam@gmail.com>"
+  }
 }
