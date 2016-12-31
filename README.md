@@ -124,10 +124,6 @@ store.dispatch(push('/foo'))
 
 ## Examples
 
-- [examples/basic](/examples/basic) - basic reference implementation
-
-Examples from the community:
-
 None yet!
 
 &rarr; _Have an example to add? Send us a PR!_ &larr;
