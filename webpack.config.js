@@ -8,7 +8,7 @@ var config = {
     ]
   },
   output: {
-    library: 'ReactRouterRedux',
+    library: 'PreactRouterRedux',
     libraryTarget: 'umd'
   },
   plugins: [

@@ -1,7 +1,7 @@
 {
-  "name": "react-router-redux",
+  "name": "preact-router-redux",
   "version": "4.0.7",
-  "description": "Ruthlessly simple bindings to keep react-router and redux in sync",
+  "description": "Ruthlessly simple bindings to keep preact-router and redux in sync",
   "main": "lib/index",
   "files": [
     "*.md",
@@ -10,7 +10,7 @@
     "lib",
     "src"
   ],
-  "repository": "reactjs/react-router-redux",
+  "repository": "matannoam/preact-router-redux",
   "authors": [
     "James Long",
     "Tim Dorr"
@@ -19,8 +19,8 @@
   "scripts": {
     "build": "npm run build:commonjs & npm run build:umd & npm run build:umd:min",
     "build:commonjs": "mkdir -p lib && babel ./src -d lib",
-    "build:umd": "webpack dist/ReactRouterRedux.js",
-    "build:umd:min": "NODE_ENV=production webpack dist/ReactRouterRedux.min.js",
+    "build:umd": "webpack dist/PreactRouterRedux.js",
+    "build:umd:min": "NODE_ENV=production webpack dist/PreactRouterRedux.min.js",
     "lint": "eslint examples src test",
     "test": "npm run lint && npm run test:node && npm run test:browser",
     "test:node": "mocha --compilers js:babel-register --recursive ./test/*.spec.js",
@@ -32,10 +32,12 @@
     "prepublish": "npm run build"
   },
   "tags": [
+    "preact",
     "react",
     "redux"
   ],
   "keywords": [
+    "preact",
     "react",
     "redux",
     "router"
@@ -79,5 +81,6 @@
     "redux-devtools-dock-monitor": "^1.0.1",
     "redux-devtools-log-monitor": "^1.0.1",
     "webpack": "^1.12.9"
-  }
+  },
+  "author": "Matan Noam Shavit <matannoam@gmail.com>"
 }

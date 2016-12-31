@@ -1,44 +1,44 @@
-# react-router-redux
+# preact-router-redux
 
-[![npm version](https://img.shields.io/npm/v/react-router-redux.svg?style=flat-square)](https://www.npmjs.com/package/react-router-redux) [![npm downloads](https://img.shields.io/npm/dm/react-router-redux.svg?style=flat-square)](https://www.npmjs.com/package/react-router-redux) [![build status](https://img.shields.io/travis/reactjs/react-router-redux/master.svg?style=flat-square)](https://travis-ci.org/reactjs/react-router-redux)
+[![npm version](https://img.shields.io/npm/v/preact-router-redux.svg?style=flat-square)](https://www.npmjs.com/package/react-router-redux) [![npm downloads](https://img.shields.io/npm/dm/preact-router-redux.svg?style=flat-square)](https://www.npmjs.com/package/preact-router-redux) [![build status](https://img.shields.io/travis/matannoam/preact-router-redux/master.svg?style=flat-square)](https://travis-ci.org/matannoam/preact-router-redux)
 
 > **Keep your router in sync with application state** :sparkles:
 
-_Formerly known as redux-simple-router_
+You're a smart person. You use [Redux](https://github.com/reactjs/redux) to manage your application state. You use [Preact Router](https://github.com/developit/preact-router) or [React Router](https://github.com/reactjs/react-router) to do routing. All is good.
 
-You're a smart person. You use [Redux](https://github.com/reactjs/redux) to manage your application state. You use [React Router](https://github.com/reactjs/react-router) to do routing. All is good.
+But the two libraries don't coordinate. You want to do time travel with your application state, but Preact Router doesn't navigate between pages when you replay actions. It controls an important part of application state: the URL.
 
-But the two libraries don't coordinate. You want to do time travel with your application state, but React Router doesn't navigate between pages when you replay actions. It controls an important part of application state: the URL.
+This library helps you keep that bit of state in sync with your Redux store. We keep a copy of the current location hidden in state. When you rewind your application state with a tool like [Redux DevTools](https://github.com/gaearon/redux-devtools), that state change is propagated to Preact Router so it can adjust the component tree accordingly. You can jump around in state, rewinding, replaying, and resetting as much as you'd like, and this library will ensure the two stay in sync at all times.
 
-This library helps you keep that bit of state in sync with your Redux store. We keep a copy of the current location hidden in state. When you rewind your application state with a tool like [Redux DevTools](https://github.com/gaearon/redux-devtools), that state change is propagated to React Router so it can adjust the component tree accordingly. You can jump around in state, rewinding, replaying, and resetting as much as you'd like, and this library will ensure the two stay in sync at all times.
-
-**This library is not _necessary_ for using Redux together with React Router. You can use the two together just fine without any additional libraries. It is useful if you care about recording, persisting, and replaying user actions, using time travel. If you don't care about these features, just [use Redux and React Router directly](http://stackoverflow.com/questions/36722584/how-to-sync-redux-state-and-url-hash-tag-params/36749963#36749963).**
+**This library is not _necessary_ for using Redux together with Preact Router. You can use the two together just fine without any additional libraries. It is useful if you care about recording, persisting, and replaying user actions, using time travel. If you don't care about these features, just [use Redux and Preact Router directly](http://stackoverflow.com/questions/36722584/how-to-sync-redux-state-and-url-hash-tag-params/36749963#36749963).**
 
 ## Installation
 
-```
-npm install --save react-router-redux
+```Shell
+yarn add preact-router-redux # or
+npm install --save preact-router-redux
 ```
 
 ## How It Works
 
-This library allows you to use React Router's APIs as they are documented. And, you can use redux like you normally would, with a single app state. The library simply enhances a history instance to allow it to synchronize any changes it receives into application state.
+This library allows you to use Preact Router's APIs as they are documented. And, you can use redux like you normally would, with a single app state. The library simply enhances a history instance to allow it to synchronize any changes it receives into application state.
 
-[history](https://github.com/reactjs/history) + `store` ([redux](https://github.com/reactjs/redux)) &rarr; [**react-router-redux**](https://github.com/reactjs/react-router-redux) &rarr; enhanced [history](https://github.com/reactjs/history) &rarr; [react-router](https://github.com/reactjs/react-router)
+[history](https://github.com/reactjs/history) + `store` ([redux](https://github.com/reactjs/redux)) &rarr; [**preact-router-redux**](https://github.com/matannoam/preact-router-redux) &rarr; enhanced [history](https://github.com/reactjs/history) &rarr; [preact-router](https://github.com/developit/preact-router)
 
 ## Tutorial
 
 Let's take a look at a simple example.
 
 ```js
-import React from 'react'
-import ReactDOM from 'react-dom'
+import { h, render } from 'preact'
 import { createStore, combineReducers } from 'redux'
-import { Provider } from 'react-redux'
-import { Router, Route, browserHistory } from 'react-router'
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import { Provider } from 'preact-redux'
+import { Router, Route } from 'preact-router'
+import { browserHistory } from './history'  // create this with history/createBrowserHistory
+import { syncHistoryWithStore, routerReducer } from 'preact-router-redux'
 
 import reducers from '<project-path>/reducers'
+import browserHistory from '<project-path>//history'  // create this with history/createBrowserHistory
 
 // Add the reducer to your store on the `routing` key
 const store = createStore(
@@ -51,7 +51,7 @@ const store = createStore(
 // Create an enhanced history that syncs navigation events with the store
 const history = syncHistoryWithStore(browserHistory, store)
 
-ReactDOM.render(
+render(
   <Provider store={store}>
     { /* Tell the Router to use our enhanced history */ }
     <Router history={history}>
@@ -65,7 +65,7 @@ ReactDOM.render(
 )
 ```
 
-Now any time you navigate, which can come from pressing browser buttons or navigating in your application code, the enhanced history will first pass the new location through the Redux store and then on to React Router to update the component tree. If you time travel, it will also pass the new state to React Router to update the component tree again.
+Now any time you navigate, which can come from pressing browser buttons or navigating in your application code, the enhanced history will first pass the new location through the Redux store and then on to Preact Router to update the component tree. If you time travel, it will also pass the new state to React Router to update the component tree again.
 
 #### How do I watch for navigation events, such as for analytics?
 
@@ -90,7 +90,7 @@ These two hooks will allow you to store the state that this library uses in what
 
 #### How do I access router state in a container component?
 
-React Router [provides route information via a route component's props](https://github.com/reactjs/react-router/blob/latest/docs/Introduction.md#getting-url-parameters). This makes it easy to access them from a container component. When using [react-redux](https://github.com/reactjs/react-redux) to `connect()` your components to state, you can access the router's props from the [2nd argument of `mapStateToProps`](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options):
+Preact Router provides route information via a route component's props [as does React Router](https://github.com/reactjs/react-router/blob/latest/docs/Introduction.md#getting-url-parameters). This makes it easy to access them from a container component. When using [preact-redux](https://github.com/developit/preact-redux) to `connect()` your components to state, you can access the router's props from the 2nd argument of `mapStateToProps`, [and similarly on react-redux](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options):
 
 ```js
 function mapStateToProps(state, ownProps) {
@@ -101,15 +101,15 @@ function mapStateToProps(state, ownProps) {
 }
 ```
 
-You should not read the location state directly from the Redux store. This is because React Router operates asynchronously (to handle things such as dynamically-loaded components) and your component tree may not yet be updated in sync with your Redux state. You should rely on the props passed by React Router, as they are only updated after it has processed all asynchronous code.
+You should not read the location state directly from the Redux store. This is because Preact Router operates asynchronously (to handle things such as dynamically-loaded components) and your component tree may not yet be updated in sync with your Redux state. You should rely on the props passed by Preact Router, as they are only updated after it has processed all asynchronous code.
 
 #### What if I want to issue navigation events via Redux actions?
 
-React Router provides singleton versions of history (`browserHistory` and `hashHistory`) that you can import and use from anywhere in your application. However, if you prefer Redux style actions, the library also provides a set of action creators and a middleware to capture them and redirect them to your history instance.
+History provides mehtods `createBrowserHistory` and `createHashHistory` which can be used to create singleton versions of history (e.g. `browserHistory` and `hashHistory`) that you can import and use from anywhere in your application. However, if you prefer Redux style actions, the library also provides a set of action creators and a middleware to capture them and redirect them to your history instance.
 
 ```js
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { routerMiddleware, push } from 'react-router-redux'
+import { routerMiddleware, push } from 'preact-router-redux'
 
 // Apply the middleware to the store
 const middleware = routerMiddleware(browserHistory)
@@ -128,13 +128,7 @@ store.dispatch(push('/foo'))
 
 Examples from the community:
 
-* [shakacode/react-webpack-rails-tutorial](https://github.com/shakacode/react-webpack-rails-tutorial) - react-router-redux including **Server Rendering** using [React on Rails](https://github.com/shakacode/react_on_rails/), live at [www.reactrails.com](http://www.reactrails.com/).
-* [davezuko/react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) - popular redux starter kit
-  * **tip**: migrating from react-router-redux `^3.0.0`? use [this commit](https://github.com/davezuko/react-redux-starter-kit/commit/0df26907) as a reference
-* [svrcekmichal/universal-react](https://github.com/svrcekmichal/universal-react) - Universal react app with async actions provided by [svrcekmichal/reasync](https://github.com/svrcekmichal/reasync) package
-* [steveniseki/react-router-redux-example](https://github.com/StevenIseki/react-router-redux-example) - minimal react-router-redux example includes css modules and universal rendering
-* [choonkending/react-webpack-node](https://github.com/choonkending/react-webpack-node) - Full-stack universal Redux App
-* [kuy/treemap-with-router](https://github.com/kuy/treemap-with-router) - An example for react-router-redux with d3's treemap.
+None yet!
 
 &rarr; _Have an example to add? Send us a PR!_ &larr;
 
