@@ -1,6 +1,6 @@
 # preact-router-redux
 
-[![npm version](https://img.shields.io/npm/v/preact-router-redux.svg?style=flat-square)](https://www.npmjs.com/package/react-router-redux) [![npm downloads](https://img.shields.io/npm/dm/preact-router-redux.svg?style=flat-square)](https://www.npmjs.com/package/preact-router-redux) [![build status](https://img.shields.io/travis/matannoam/preact-router-redux/master.svg?style=flat-square)](https://travis-ci.org/matannoam/preact-router-redux)
+[![npm version](https://img.shields.io/npm/v/preact-router-redux.svg?style=flat-square)](https://www.npmjs.com/package/preact-router-redux) [![npm downloads](https://img.shields.io/npm/dm/preact-router-redux.svg?style=flat-square)](https://www.npmjs.com/package/preact-router-redux) [![build status](https://img.shields.io/travis/matannoam/preact-router-redux/master.svg?style=flat-square)](https://travis-ci.org/matannoam/preact-router-redux)
 
 > **Keep your router in sync with application state** :sparkles:
 
