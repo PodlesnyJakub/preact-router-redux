@@ -57,7 +57,7 @@ export default function syncHistoryWithStore(history, store, {
       // Update address bar to reflect store state
       isTimeTraveling = true
       currentLocation = locationInStore
-      history.transitionTo({
+      history.push({
         ...locationInStore,
         action: 'PUSH'
       })
